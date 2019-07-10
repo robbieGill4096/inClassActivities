@@ -1,4 +1,3 @@
-
 public class Task implements Comparable<Task>{
 	private String description;
 	private int priority;
@@ -50,7 +49,6 @@ public class Task implements Comparable<Task>{
 		}
 		return false;}
 	
-	
 	public String toString() {
 		if (this.isComplete()) {
 			String taskString = ("[X]" + " " + description + ", " + priority);
@@ -59,15 +57,37 @@ public class Task implements Comparable<Task>{
 		String taskString = ("[ ]" + " " + description + ", " + priority);
 		return taskString;
 	}
-
+	
+	
 	@Override
 	public int compareTo(Task o) {
-		int obj1 = this.getPriority();
-		int obj2 = o.getPriority();
-		if(obj1.compareTo(obj2) < 0) {
-			System.out.println("obj1 is less than obj2");
+		boolean compThisTask = this.isComplete();
+		boolean compOtherTask = o.isComplete();
+		
+		Integer priorThisTask = this.getPriority();
+		Integer priorOtherTask = o.getPriority();
+		
+		if((compThisTask && compOtherTask) == true || (compThisTask && compOtherTask) == false) {
+			if ((priorThisTask.equals(priorOtherTask))) {
+				return 0;
+			}
+			if (priorThisTask < priorOtherTask) {
+				return -1;
+			}
+			if (priorThisTask > priorOtherTask) {
+				return 1;
+			}
+		else if ((compThisTask) == true || (compOtherTask) == false)  {
+			return -1;
+			}
+		else {
+			return 1;
+			
 		}
+			
+		}
+		
 		// TODO Auto-generated method stub
-		return 0;
-	}
+		return 0; }
+	
 }
